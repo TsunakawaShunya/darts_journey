@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('spot_trips', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('introduce');        // 紹介文
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('spot_id')->constrained()->onDelete('cascade');
+            $table->foreignId('trip_id')->constrained()->onDelete('cascade');
+            $table->integer('status');      // 0:行ってない，1:行った
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('spot_trips');
     }
 };
