@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TripController;
+use App\Http\Controllers\ParameterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/users/{user}/trip/index', [TripController::class, 'index'])->middleware('auth')->name('trip.index');
+Route::post('/users/{user}/trip/input', [ParameterController::class, 'post_parameter'])->middleware('auth');
+Route::get('/users/{user}/trip/list', [TripController::class, 'show_list'])->middleware('auth');
+
 
 require __DIR__.'/auth.php';

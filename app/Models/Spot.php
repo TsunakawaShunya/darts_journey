@@ -10,10 +10,10 @@ class Spot extends Model
     use HasFactory;
     
     public function spot_trips() {
-        return $this->hasmany(Spot_trip::class);
+        return $this->hasmany(SpotTrip::class);
     }
     
     public function spot_category() {
-        return $this->belongsTo(Spot_category::class);
+        return $this->belongsTo(SpotCategory::class);
     }
 }

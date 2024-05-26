@@ -10,7 +10,7 @@ class Image extends Model
     use HasFactory;
     
     public function trip() {
-        return $this->belongsTo(Spot_category::class);
+        return $this->belongsTo(Trip::class);
     }
 
 }

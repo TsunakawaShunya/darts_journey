@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function trips() {
+    public function parameters() {
         return $this->hasMany(Trip::class);
     }
 

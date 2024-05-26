@@ -17,15 +17,13 @@ class TripFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
+            'parameter_id' => 1,
             'title' => fake()->word,
             'description' => fake()->realText(),
             'first_point' => fake()->word,
             'first_latitude' => fake()-> randomFloat(2, 30, 40),
             'first_longitude' => fake()-> randomFloat(2, 130, 140),
             'trip_date' => fake()-> date(),
-            'trip_time' => fake()-> time('H:i'),
-            'transpotation' => fake()->word,
             'status' => 0,
             'created_at' => now(),
             'updated_at' => now(),

@@ -28,7 +28,7 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="bg-neutral-50 max-h-full">
                 {{ $slot }}
             </main>
         </div>
