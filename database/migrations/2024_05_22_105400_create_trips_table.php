@@ -15,15 +15,13 @@ return new class extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('parameter_id')->constrained()->onDelete('cascade');
             $table->string('title', 50);     // 旅行名
-            $table->string('description', 200);     // 詳細
+            $table->string('description', 200)->nullable();     // 詳細
             $table->string('first_point', 30);     // 場所名
-            $table->double('first_latitude');     // 出発地緯度
-            $table->double('first_longitude');     // 出発地経度
+            $table->double('first_latitude');     // 最初のピン緯度
+            $table->double('first_longitude');     // 最初のピン経度
             $table->date('trip_date');     // 旅行日
-            $table->time('trip_time');     // 旅行時間
-            $table->string('transpotation', 30);     // 移動手段
             $table->integer('status');     // 0:非公開，1:公開
             $table->timestamps();
         });

@@ -116,7 +116,8 @@ class SpotCategorySeeder extends Seeder
 
         foreach ($categories as $key => $value) {
             DB::table('spot_categories')->insert([
-                'name' => $value,
+                'en_name' => $key,
+                'ja_name' => $value,
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(SpotCategorySeeder::class);
+        $this->call(ParameterSeeder::class);
         $this->call(SpotSeeder::class);
         $this->call(TripSeeder::class);
         $this->call(SpotTripSeeder::class);

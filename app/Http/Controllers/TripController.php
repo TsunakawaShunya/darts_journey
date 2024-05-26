@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Trip;
+use App\Models\Parameter;
+use App\Models\SpotCategory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TripController extends Controller
@@ -14,7 +16,14 @@ class TripController extends Controller
      */
     public function index()
     {
-        //
+        $spot_categories = SpotCategory::all();
+        return view("trip.index")->with(["spot_categories" => $spot_categories]);
+    }
+
+    public function show_list()
+    {
+        $parameter = Parameter::where("user_id", Auth::id())->latest("updated_at")->first();
+        return view("trip.list")->with(["parameter" => $parameter]);
     }
 
     /**

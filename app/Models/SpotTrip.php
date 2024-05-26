@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Spot_trip extends Model
+class SpotTrip extends Model
 {
     use HasFactory;
     
@@ -14,6 +14,6 @@ class Spot_trip extends Model
     }
     
     public function spot() {
-        return $this->belongsTo(Spot_trip::class);
+        return $this->belongsTo(SpotTrip::class);
     }
 }

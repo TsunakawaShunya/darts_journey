@@ -10,6 +10,6 @@ class Follow extends Model
     use HasFactory;
     
     public function user() {
-        return $this->belongsTo(Spot_category::class);
+        return $this->belongsTo(User::class);
     }
 }

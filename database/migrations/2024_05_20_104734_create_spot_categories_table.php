@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('spot_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30);     // 名前
+            $table->string('en_name', 100);     // 英語名前
+            $table->string('ja_name', 30);     // 英語名前
             $table->timestamps();
         });
     }

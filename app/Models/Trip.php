@@ -9,12 +9,12 @@ class Trip extends Model
 {
     use HasFactory;
     
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function parameter() {
+        return $this->belongsTo(Parameter::class);
     }
-    
+
     public function spot_trips() {
-        return $this->hasmany(Spot_trip::class);
+        return $this->hasmany(SpotTrip::class);
     }
     
     public function images() {
@@ -24,4 +24,18 @@ class Trip extends Model
     public function likes() {
         return $this->hasmany(Like::class);
     }
+    
+    protected $fillable = [
+        'user_id',
+        'title',
+        'description',
+        'first_point',
+        'frst_latitude',
+        'first_longitude',
+        'trip_date',
+        'status',
+        'created_at',
+        'updated_at',
+    ];
+
 }
