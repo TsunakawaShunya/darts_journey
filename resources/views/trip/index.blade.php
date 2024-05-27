@@ -5,7 +5,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_key') }}&libraries=places"></script>
 
     <div class="px-auto">
-        <form action="/users/{{ Auth::id() }}/trip/input" method="POST" id="tripForm">
+        <form action="/users/{{ Auth::id() }}/trip/input" method="POST">
             @method('post')
             @csrf
             <input type="hidden" name="parameter[user_id]" value="{{ Auth::id() }}"/>

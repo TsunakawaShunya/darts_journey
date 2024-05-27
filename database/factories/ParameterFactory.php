@@ -22,8 +22,7 @@ class ParameterFactory extends Factory
             'departure_latitude' => fake()-> randomFloat(2, 30, 40),
             'departure_longitude' => fake()-> randomFloat(2, 130, 140),
             'transportation' => fake()->word,
-            'trip_time' => fake()-> time('H:i'),
-            'trip_time' => fake()-> time('H:i'),
+            'trip_time' => fake()->randomNumber(),
         ];
     }
 }
