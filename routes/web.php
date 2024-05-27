@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\ParameterController;
+use App\Http\Controllers\SpotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/users/{user}/trip/index', [TripController::class, 'index'])->middleware('auth')->name('trip.index');
 Route::post('/users/{user}/trip/input', [ParameterController::class, 'post_parameter'])->middleware('auth');
+Route::get('/users/{user}/trip/darts', [ParameterController::class, 'show_darts'])->middleware('auth');
+Route::post('/users/{user}/trip/list', [SpotController::class, 'store_spots'])->middleware('auth');
 Route::get('/users/{user}/trip/list', [TripController::class, 'show_list'])->middleware('auth');
 
 
