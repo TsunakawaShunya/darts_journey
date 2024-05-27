@@ -1,15 +1,14 @@
 <x-app-layout>
     <x-slot name="title">ダーツの結果</x-slot>
 
-    <!-- Google Maps API の読み込み -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_key') }}&libraries=places" defer></script>
-
     <div id="map" style="height: 600px; width:1200px;"></div>
     
     <div id="place-result"></div>
     <div>
         {{ $parameter->spot_category->en_name }}
     </div>
+    
+    
     <!-- Google Maps JavaScript -->
     <script>
         let map;
@@ -17,7 +16,7 @@
         let radius = 0;
         const orangePin = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
         const redPin = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
-        const infoWindow = new google.maps.InfoWindow();
+        const infoWindow;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -41,6 +40,8 @@
 
             drawCircle({{ $parameter->departure_latitude }}, {{ $parameter->departure_longitude }}, radius);
 
+            infoWindow = new google.maps.InfoWindow();
+            
             // ダーツの条件
             const request = {
                 location: { lat: {{ $parameter->departure_latitude }}, lng: {{ $parameter->departure_longitude }} },
@@ -100,10 +101,7 @@
             } else {
                 document.getElementById('place-result').innerHTML = "該当する施設が見つかりませんでした。";
             }
-            console.log("aaa");
         }
     </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHmS-cMWkslPonyCsDSuV8hyc5U6p55ps&libraries=places&callback=initMap">
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHmS-cMWkslPonyCsDSuV8hyc5U6p55ps&callback=initMap&libraries=places"></script>
 </x-app-layout>
