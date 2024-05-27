@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Spot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SpotController extends Controller
 {
@@ -33,11 +34,23 @@ class SpotController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store_spots(Request $request)
     {
-        //
+        $spots = $request->input('spot');
+    
+        foreach ($spots as $spot) {
+            if (isset($spot['selected'])) {
+                $newSpot = new Spot();
+                $newSpot->spot_category_id = $spot['spot_category_id'];
+                $newSpot->name = $spot['name'];
+                $newSpot->latitude = $spot['latitude'];
+                $newSpot->longitude = $spot['longitude'];
+                $newSpot->save();
+            }
+        }
+    
+        return redirect('users/' . Auth::id() . '/trip/list');
     }
-
     /**
      * Display the specified resource.
      *

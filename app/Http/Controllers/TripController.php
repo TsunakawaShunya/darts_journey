@@ -22,8 +22,7 @@ class TripController extends Controller
 
     public function show_list()
     {
-        $parameter = Parameter::where("user_id", Auth::id())->latest("updated_at")->first();
-        return view("trip.list")->with(["parameter" => $parameter]);
+        return view("trip.list");
     }
 
     /**
