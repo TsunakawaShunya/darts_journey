@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('spot_category_id')->constrained()->onDelete('cascade');
             $table->double('departure_latitude');     // 出発地緯度
             $table->double('departure_longitude');     // 出発地経度
-            $table->time('trip_time');     // 旅行時間
+            $table->Integer('trip_time');     // 旅行時間 [分]
             $table->string('transportation', 30);     // 移動手段
             $table->timestamps();
         });
