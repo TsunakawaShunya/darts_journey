@@ -7,6 +7,9 @@
         <form id="spotsForm" action="/users/{{ Auth::id() }}/trip/list" method="POST">
             @csrf
             <div id="spot-list"></div>
+            <input type="hidden" name="parameter_id" value={{ $parameter->id }}>
+            <input type="hidden" name="first_latitude" id="dart_latitude">
+            <input type="hidden" name="first_longitude" id="dart_longitude">
             <button type="submit">送信</button>
         </form>
     </div>
@@ -19,7 +22,7 @@
     <script>
         let map;
         let infoWindow;
-        const departureLocation = { lat: {{ $parameter->departure_latitude }}, lng: {{ $parameter->departure_longitude }} }
+        const departureLocation = { lat: {{ $parameter->departure_latitude }}, lng: {{ $parameter->departure_longitude }} };
         const redPin = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
         const orangePin = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
         const bluePin = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
@@ -37,6 +40,10 @@
 
             const dart_pos = getRandomLocationInCircle(departureLocation, getRadius());
             placeMarker(dart_pos, redPin);
+
+            // Set dart position to hidden inputs
+            document.getElementById('dart_latitude').value = dart_pos.lat;
+            document.getElementById('dart_longitude').value = dart_pos.lng;
 
             const r = getRadius();
             drawCircle(dart_pos, r);

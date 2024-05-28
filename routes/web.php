@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/users/{user}/trip/index', [TripController::class, 'index'])->middleware('auth')->name('trip.index');
 Route::post('/users/{user}/trip/input', [ParameterController::class, 'post_parameter'])->middleware('auth');
 Route::get('/users/{user}/trip/darts', [ParameterController::class, 'show_darts'])->middleware('auth');
-Route::post('/users/{user}/trip/list', [SpotController::class, 'store_spots'])->middleware('auth');
+Route::post('/users/{user}/trip/list', [SpotController::class, 'create_spots'])->middleware('auth');
 Route::get('/users/{user}/trip/list', [TripController::class, 'show_list'])->middleware('auth');
 
 
