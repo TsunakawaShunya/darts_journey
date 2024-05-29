@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Spot_trip;
+use App\Models\SpotTrip;
+use App\Models\Trip;
+use App\Models\Parameter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SpotTripController extends Controller
 {
@@ -17,25 +20,29 @@ class SpotTripController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // 行く予定だったspotを行ったかどうかを更新するview
     public function create()
     {
-        //
+        $parameter = Parameter::where('user_id', Auth::id())->latest("updated_at")->first();
+        $trip = Trip::where('parameter_id', $parameter->id)->latest("updated_at")->first();
+        $spotTrips = SpotTrip::where('trip_id', $trip->id)->get();
+        
+        return view("trip.list")->with(["spotTrips" => $spotTrips, "trip" => $trip]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    // spot_tripで行ったかどうかを更新
+    public function store_status(Request $request)
     {
-        //
+        $spotIds = $request['spots'];
+        foreach($spotIds as $spotId) {
+            $spotTrip = SpotTrip::where('spot_id', $spotId)->first();
+            $spotTrip->status = 1;
+            $spotTrip->save();
+            
+            $tripId = $spotTrip->trip_id;
+        }
+
+        return redirect('/users/' . Auth::id() . '/create/trip/' . $tripId);
     }
 
     /**

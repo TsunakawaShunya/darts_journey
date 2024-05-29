@@ -10,10 +10,10 @@ class SpotTrip extends Model
     use HasFactory;
     
     public function trip() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Trip::class);
     }
     
     public function spot() {
-        return $this->belongsTo(SpotTrip::class);
+        return $this->belongsTo(Spot::class);
     }
 }

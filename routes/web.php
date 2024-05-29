@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\SpotController;
+use App\Http\Controllers\SpotTripController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,10 @@ Route::get('/users/{user}/trip/index', [TripController::class, 'index'])->middle
 Route::post('/users/{user}/trip/input', [ParameterController::class, 'post_parameter'])->middleware('auth');
 Route::get('/users/{user}/trip/darts', [ParameterController::class, 'show_darts'])->middleware('auth');
 Route::post('/users/{user}/trip/list', [SpotController::class, 'create_spots'])->middleware('auth');
-Route::get('/users/{user}/trip/list', [TripController::class, 'show_list'])->middleware('auth');
+Route::get('/create/users/{user}/trip/list', [SpotTripController::class, 'create'])->middleware('auth');
+Route::post('/store/spot_trip/status', [SpotTripController::class, 'store_status'])->middleware('auth');
+Route::get('/users/{user}/create/trip/{trip}', [TripController::class, 'create'])->middleware('auth');
+Route::post('/store/trip', [TripController::class, 'store'])->middleware('auth');
 
 
 require __DIR__.'/auth.php';
