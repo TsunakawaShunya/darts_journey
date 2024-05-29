@@ -63,6 +63,7 @@ class SpotController extends Controller
         $trip->description = "詳細";
         $trip->first_latitude = $request['first_latitude'];
         $trip->first_longitude = $request['first_longitude'];
+        $trip->trip_date = now();
         $trip->status = 0;
         $trip->save();
         
@@ -74,7 +75,7 @@ class SpotController extends Controller
             $spotTrip->save();
         }
         
-        return redirect('users/' . Auth::id() . '/trip/list');
+        return redirect('create/users/' . Auth::id() . '/trip/list');
     }
     /**
      * Display the specified resource.

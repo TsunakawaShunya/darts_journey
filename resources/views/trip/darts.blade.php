@@ -36,10 +36,10 @@
 
             infoWindow = new google.maps.InfoWindow();
 
-            placeMarker(departureLocation, greenPin);
+            placeMarker(departureLocation, redPin);
 
             const dart_pos = getRandomLocationInCircle(departureLocation, getRadius());
-            placeMarker(dart_pos, redPin);
+            placeMarker(dart_pos, greenPin);
 
             // Set dart position to hidden inputs
             document.getElementById('dart_latitude').value = dart_pos.lat;
